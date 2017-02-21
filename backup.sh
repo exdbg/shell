@@ -69,7 +69,7 @@ do
         Name=$(echo $VolumesToBackup | cut -d : -f 2)
         VolumeGroup=$(echo $VolumesToBackup | cut -d : -f 3)
 
-        lvcreate -L10G  -n bk_$Name  -s  $Device 2> /dev/null
+        lvcreate -L100G  -n bk_$Name  -s  $Device 2> /dev/null
         mount -onouuid,ro /dev/$VolumeGroup/bk_$Name  /snapshot
 	echo "backing up $Name"
         rsync -aAv  --delete-before /snapshot/  /BackupBox/$Name/    | mailx  -s "Backup volume information $Name" backups@sondrel.com 
