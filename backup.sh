@@ -18,9 +18,6 @@ if [ -z  "$MOUNTED" ]; then
 fi
 	
 
-
-
-
 echo $$ >> /run/backup2.sh.pid
 
 
@@ -34,7 +31,6 @@ echo " remove any old backup ZFS snapshots"
 zfs destroy -r "$POOL@USB2"
 echo " cleaned creating fresh ones for backup"
 zfs snapshot -r "$POOL@USB2"
-
 
 
 for LISTING in $(ls -1d /xxx/*/.zfs/snapshot/USB2)
@@ -55,9 +51,7 @@ for RemoveMe in $(lvs --aligned -o lv_path 2>/dev/null | grep bk_ )
 do
     lvremove -f $RemoveMe 2>/dev/null
 
-
 done
-
 
 # do backups for all volumes in the lvm group
 for VolumesToBackup in $(lvs -o lv_path,lv_name,vg_name --noheadings --separator : 2> /dev/null )
