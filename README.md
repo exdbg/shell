@@ -1,1 +1,1 @@
-# My sh script
+# Some sh script
