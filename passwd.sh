@@ -10,7 +10,7 @@ if [ -s yad ];then
         > yad
 fi
 
-/usr/bin/ldapsearch -H ldap://uk-wdc01.sondrel.com -Y GSSAPI -N -b ou=Users,ou=China,ou=Corporate,dc=sondrel,dc=com '(&(objectClass=user)(userAccountControl=512))'|grep pwdLastSet|awk -F ":" '{print $2}'> day
+/usr/bin/ldapsearch -H ldap://xxx.com -Y GSSAPI -N -b ou=Users,ou=China,ou=Corporate,dc=xxx,dc=com '(&(objectClass=user)(userAccountControl=512))'|grep pwdLastSet|awk -F ":" '{print $2}'> day
 
 while read line
         do
@@ -23,7 +23,7 @@ while read line
                 echo $LAST >> yad
 done < day
 
-/usr/bin/ldapsearch -H ldap://uk-wdc01.sondrel.com -Y GSSAPI -N -b ou=Users,ou=China,ou=Corporate,dc=sondrel,dc=com '(&(objectClass=user)(userAccountControl=512))'|grep userPrincipalName|awk -F ":" '{print $2}' > email
+/usr/bin/ldapsearch -H ldap://xxx.com -Y GSSAPI -N -b ou=Users,ou=China,ou=Corporate,dc=xxx,dc=com '(&(objectClass=user)(userAccountControl=512))'|grep userPrincipalName|awk -F ":" '{print $2}' > email
 
 paste -d : email yad > join
 
@@ -32,9 +32,9 @@ while read i k
                 if [[ "$k" -lt "5" && "$k" -gt "0" ]];then
 
                         /usr/sbin/sendmail -t -F Password Check << EOF
-                        SUBJECT:You Linux & AD account password will expried soon
+                        SUBJECT:Your Linux & Domain password will expried soon
                         TO:$i
-                        Your Sondrel Linux & AD passord will expried in $k days, please change your password ASAP.
+                        Your Linux & Domain passord will expried in $k days, please change your password ASAP.
 
                         IT
 
