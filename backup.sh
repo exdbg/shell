@@ -25,7 +25,7 @@ echo $$ >> /run/backup2.sh.pid
 
 
 # whats the pool name
-POOL="sondrel"
+POOL="xxx"
 #DAY=`/bin/date +'%a'`
 
 echo "Starting with ZFS volumes"
@@ -37,17 +37,15 @@ zfs snapshot -r "$POOL@USB2"
 
 
 
-for LISTING in $(ls -1d /sondrel/*/.zfs/snapshot/USB2)
+for LISTING in $(ls -1d /xxx/*/.zfs/snapshot/USB2)
 do
     OUTPUT2=$(echo $LISTING | cut -d "." -f1 )
     OUTPUT=$(echo $OUTPUT2 | cut -d "/" -f3)
     echo "processing $OUTPUT"
-    rsync -aAv  --delete-before $LISTING/  /BackupBox/$OUTPUT/    | mailx  -s "Backup volume information $OUTPUT"  it@sondrel.com backups@sondrel.com kevin.steptoe.sondrel.com
+    rsync -aAv  --delete-before $LISTING/  /BackupBox/$OUTPUT/    | mailx  -s "Backup volume information $OUTPUT"  it@xxx.com
 	sync; sync; sync;
 
 done
-
-# rsync -aAv  --delete-before /home/  /BackupBox/home/    | mailx  -s "Backup volume information Homes"  it@sondrel.com
 
 zfs destroy -r "$POOL@USB2"
 
@@ -72,7 +70,7 @@ do
         lvcreate -L100G  -n bk_$Name  -s  $Device 2> /dev/null
         mount -onouuid,ro /dev/$VolumeGroup/bk_$Name  /snapshot
 	echo "backing up $Name"
-        rsync -aAv  --delete-before /snapshot/  /BackupBox/$Name/    | mailx  -s "Backup volume information $Name" backups@sondrel.com 
+        rsync -aAv  --delete-before /snapshot/  /BackupBox/$Name/ | mailx  -s "Backup volume information $Name" backups@xxx.com 
 	sync; sync; sync;
         umount /snapshot
 
