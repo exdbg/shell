@@ -1,7 +1,7 @@
 #!/bin/bash 
+
 echo  "USB backup routine for copying local sondrel ZFS pool and LVM volumes to USB raid array mounted at /BackupBox"
 
-# Set path variable up so we can find things
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin:/usr/x86_64-pc-linux-gnu/gcc-bin/4.7.3"
 
 
@@ -20,10 +20,7 @@ fi
 
 echo $$ >> /run/backup2.sh.pid
 
-
-# whats the pool name
 POOL="xxx"
-#DAY=`/bin/date +'%a'`
 
 echo "Starting with ZFS volumes"
 
@@ -38,7 +35,7 @@ do
     OUTPUT2=$(echo $LISTING | cut -d "." -f1 )
     OUTPUT=$(echo $OUTPUT2 | cut -d "/" -f3)
     echo "processing $OUTPUT"
-    rsync -aAv  --delete-before $LISTING/  /BackupBox/$OUTPUT/    | mailx  -s "Backup volume information $OUTPUT"  it@xxx.com
+    rsync -aAv  --delete-before $LISTING/  /BackupBox/$OUTPUT/    | mailx  -s "Backup volume information $OUTPUT"  xxx@xxx.com
 	sync; sync; sync;
 
 done
@@ -53,7 +50,6 @@ do
 
 done
 
-# do backups for all volumes in the lvm group
 for VolumesToBackup in $(lvs -o lv_path,lv_name,vg_name --noheadings --separator : 2> /dev/null )
 do
 
