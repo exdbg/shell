@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-#Author:Wesker Lu
-#Version 1.0
+
 REMOTE_OK=remote_ok
 REMOTE_FAIL=remote_fail
 TIMESTAMP=`date +%F%H%M%S`
