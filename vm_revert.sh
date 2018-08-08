@@ -3,7 +3,7 @@ HOSTS="xxx.xxx.xxx.xxx"
 COUNT=40
 
 SUBJECT="xxx lost connection and has been reverted to latest snapshot"
-EMAILID="it@xxx.com"
+EMAILID="xxx@xxx.com"
 
 for myHost in $HOSTS
 do
