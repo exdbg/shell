@@ -1,5 +1,6 @@
 #!/bin/bash
 #add comment
+# try for git
 host=172.16.43.47
 user=root
 src='/tmp/src1/'
