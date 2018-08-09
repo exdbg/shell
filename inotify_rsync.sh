@@ -1,6 +1,9 @@
 #!/bin/bash
 #add comment
 #from linux
+# try for git
+#What?
+#last test
 host=172.16.43.47
 user=root
 src='/tmp/src1/'
