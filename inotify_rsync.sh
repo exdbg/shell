@@ -1,4 +1,5 @@
 #!/bin/bash
+#add comment
 host=172.16.43.47
 user=root
 src='/tmp/src1/'
