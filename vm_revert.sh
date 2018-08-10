@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 HOSTS="xxx.xxx.xxx.xxx"
 
 COUNT=40
