@@ -79,4 +79,3 @@ if [ -f /run/backup2.sh.pid ]; then
     rm /run/backup2.sh.pid
 fi
 exit 0
-
