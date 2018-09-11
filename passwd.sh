@@ -34,4 +34,3 @@ while read i k
 done < join
 
 exit 0
-
