@@ -1,5 +1,5 @@
 #!/bin/bash
-host=172.16.43.47
+host=x.x.x.x
 user=root
 src='/tmp/src1/'
 dest='/tmp/dest1'
