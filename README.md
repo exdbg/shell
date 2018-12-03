@@ -1,1 +1,1 @@
-# Some shell script
+# Some shell scripts
