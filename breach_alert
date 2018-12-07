@@ -4,28 +4,28 @@ if [ -s breach ];then
         > breach
 fi
 
-/usr/bin/ldapsearch -H ldap://uk-wdc01 -Y GSSAPI -N -b cn=TSMC,ou=Groups,ou=TSMC,ou=Corporate,dc=sondrel,dc=com|grep -i "member"|awk -F ":" '{print $2}'|awk -F "," '{print $1}'|awk -F "=" '{print $2}'|sort -n | uniq > tsmc_members
+/usr/bin/ldapsearch -H ldap://xxxx -Y GSSAPI -N -b cn=xxx,ou=Groups,ou=xxx,ou=Corporate,dc=xxx,dc=xxx|grep -i "member"|awk -F ":" '{print $2}'|awk -F "," '{print $1}'|awk -F "=" '{print $2}'|sort -n | uniq > xxx_members
 
-groups=$(/usr/bin/awk -F " " '$2<0' tsmc_members)
+groups=$(/usr/bin/awk -F " " '$2<0' xxx_members)
 
-/usr/bin/ldapsearch -H ldap://uk-wdc01 -Y GSSAPI -N -b "cn=$groups,ou=Project Groups,ou=Corporate,dc=sondrel,dc=com"|grep -i "member"|awk -F ":" '{print $2}'|awk -F "," '{print $1}'|awk -F "=" '{print $2}'|sort -n | uniq > sub_group_members
+/usr/bin/ldapsearch -H ldap://xxx -Y GSSAPI -N -b "cn=$groups,ou=Project Groups,ou=Corporate,dc=xxx,dc=xxx"|grep -i "member"|awk -F ":" '{print $2}'|awk -F "," '{print $1}'|awk -F "=" '{print $2}'|sort -n | uniq > sub_group_members
 
 /usr/bin/cat sub_group_members|grep -v $(/usr/bin/awk -F " " '$2<0' sub_group_members) > sub_group_members_temp
 
-/usr/bin/cat tsmc_members |grep -v $(/usr/bin/awk -F " " '$2<0' tsmc_members) > tsmc_members_temp
+/usr/bin/cat xxx_members |grep -v $(/usr/bin/awk -F " " '$2<0' xxx_members) > xxx_members_temp
 
-/usr/bin/cat tsmc_members_temp sub_group_members_temp | sort -n | uniq > final_tsmc_members
+/usr/bin/cat xxx_members_temp sub_group_members_temp | sort -n | uniq > final_xxx_members
 
 /usr/bin/grep -i "authentication succeeds for" /var/log/secure | awk -F "'" '{print $2}'| sort -n | uniq > gui_login_status
 
 /usr/bin/sed -i "s@\.@@g" gui_login_status
-/usr/bin/sed -i "s@ @@g" final_tsmc_members
+/usr/bin/sed -i "s@ @@g" final_xxx_members
 
 for i in $(/usr/bin/cat gui_login_status)
 
 do
 
-        grep $i final_tsmc_members > /dev/null
+        grep $i final_xxx_members > /dev/null
 
                 if [ $? -ne 0 ]; then
 
